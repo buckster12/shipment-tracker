@@ -80,6 +80,13 @@ class UPS extends AbstractTracker
                 // $track->addAdditionalDetails('accessPoint', ...);
                 $track->addAdditionalDetails('pickupDueDate', $contents['trackDetails'][0]['upsAccessPoint']['pickupPackageByDate']);
             }
+            
+            if (isset($contents['trackDetails'][0]['additionalInformation']['weight'])) {
+                $track->addAdditionalDetails('weight', $contents['trackDetails'][0]['additionalInformation']['weight']);
+            }
+            if (isset($contents['trackDetails'][0]['scheduledDeliveryDate'])) {
+                $track->addAdditionalDetails('scheduledDeliveryDate', $contents['trackDetails'][0]['scheduledDeliveryDate']);
+            }
         }
 
         return $track->sortEvents();
